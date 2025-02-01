@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Legal Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #25d366;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #25d366;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        iframe {
+            width: 100%;
+            height: 800px;
+            border: none;
+        }
+
+        .footer {
+            background-color: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            border-top: 1px solid #ccc;
+        }
+
+        .footer a {
+            color: #25d366;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="help.html">Help</a>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1>WhatsApp Legal Information</h1>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .info, .blog {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .status {
+            font-weight: bold;
+        }
+        .blog {
+            border: 1px solid #ddd;
+        }
+        .messages {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #fafafa;
+        }
+        .message {
+            margin-bottom: 10px;
+        }
+        .message span {
+            font-weight: bold;
+        }
+        .blog input, .blog button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .blog button {
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        .blog button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Phone Settings</h1>
+        
+        <!-- IP and Time -->
+        <div class="info" id="ip-time">
+            <p>Your IP Address: <span id="ip">Fetching...</span></p>
+            <p>Current Time: <span id="time">Loading...</span></p>
+        </div>
+        
+        <!-- Phone Settings -->
+        <div class="info">
+            <p>Online Status: <span id="online-status">Checking...</span></p>
+            <p>Battery: <span id="battery">Fetching...</span></p>
+        </div>
+        
+
+    <script>
+        // Fetch and display the IP address
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('ip').textContent = data.ip;
+            })
+            .catch(() => {
+                document.getElementById('ip').textContent = "Unable to fetch IP";
+            });
+
+        // Real-time clock
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById('time').textContent = timeString;
+        }
+        setInterval(updateTime, 1000); // Update every second
+        updateTime();
+
+        // Online/Offline status
+        function updateOnlineStatus() {
+            const status = navigator.onLine ? "Online" : "Offline";
+            document.getElementById('online-status').textContent = status;
+        }
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        updateOnlineStatus();
+
+        // Battery percentage
+        if (navigator.getBattery) {
+            navigator.getBattery().then(battery => {
+                function updateBatteryStatus() {
+                    const level = (battery.level * 100).toFixed(0);
+                    document.getElementById('battery').textContent = `${level}%`;
+                }
+                updateBatteryStatus();
+                battery.addEventListener('levelchange', updateBatteryStatus);
+            });
+        } else {
+            document.getElementById('battery').textContent = "Not Supported";
+        }
+
+        // Blog chat functionality
+        const messagesContainer = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+
+        function addMessage() {
+            const messageText = messageInput.value.trim();
+            if (messageText) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message');
+                messageElement.innerHTML = `<span>User:</span> ${messageText}`;
+                messagesContainer.appendChild(messageElement);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                messageInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+    <p>website coding : <a href="https://wa.me/+263 78 352 5824" target="_blank">Contact Us</a></p>
+        <p>2025 © ICONIC TECH | <a href="https://whatsapp.com/channel/0029ValX2Js9RZAVtDgMYj0r">Whatsapp  </a> | <a href="brightchibondo01@gmail.com">GMAIL</a> | <a href="https://t.me/kinetech06official">telegram</a></p>
+    </div>
+
+</body>
+</html>
